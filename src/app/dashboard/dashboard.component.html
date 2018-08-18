@@ -1,0 +1,92 @@
+<div class="container col-sm-10 col-sm-offset-1">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Coditas</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" >Sort By 
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li (click)="sortbyAtoZ()"><a href="#">Name (A - Z)</a></li>
+            <li (click)="sortbyZtoA()"><a href="#">Name (Z - A)</a></li>
+            <li (click)="sortbyAsending()"><a href="#">Rank ↑</a></li>
+            <li (click)="sortbyDesending()"><a href="#">Rank ↓</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form #myForm="ngForm" class="navbar-form navbar-left pull-right"  >
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="searchText"  [(ngModel)]="searchText" >
+        </div>
+        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+      </form>
+    </div>
+  </nav>
+
+
+
+
+<div class="container col-sm-10 col-sm-offset-1">
+  
+  <div class="well col-sm-12" *ngFor="let user of users | filter: searchText | paginate: { itemsPerPage: 4, currentPage: p }">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-4">
+          <img [src]="user.avatar_url" class=" img-circle img-responsive"  width="150" height="150">
+        </div>
+        <div class="col-sm-8">
+          <div class="Row">
+            <div class="col-sm-12">
+              <h4>{{user.login}}</h4>
+              <div class="Row"></div>
+              <div>Profile Url:{{user.avatar_url}}</div><br>
+            </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <div>Data one:</div>
+              <div>Data Two:</div>
+            </div>
+            <div class="col-sm-7">
+              <div>Data one Value:</div>
+              <div>Data Two Value:</div>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-info pull-right" data-toggle="collapse" (click)="onclicktoggle()"data-target="#demo">{{showdetails? 'collapse' : 'Details'}}</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div id="demo" class="collapse">
+        <table class="table table-hover .table-responsive">
+          <tbody>
+            <tr>
+              <td>Data Lable:</td>
+              <td>Data one Value:</td>
+            </tr>
+            <tr>
+              <td>Data Lable:</td>
+              <td>Data two Value:</td>
+            </tr>
+            <tr>
+              <td>Data Lable:</td>
+              <td>Data three Value:</td>
+            </tr>
+            <tr>
+                <td>Data Lable:</td>
+                <td>Data four Value:</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12">
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
